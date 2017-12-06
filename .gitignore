@@ -1,0 +1,16 @@
+# Folders
+dist
+coverage
+node_modules
+.npm
+.env
+
+# Log
+npm-debug.log*
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock

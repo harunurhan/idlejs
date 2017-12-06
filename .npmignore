@@ -1,0 +1,4 @@
+!dist
+src
+*.spec.js
+*.spec.js.map

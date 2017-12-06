@@ -1,0 +1,41 @@
+{
+  "name": "idlejs",
+  "version": "1.0.0",
+  "description": "Execute when page is idle based on custom interactions",
+  "main": "dist/library.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc -w",
+    "test": "karma start karma.config.js --single-run",
+    "test:watch": "karma start karma.config.js",
+    "lint": "tslint \"src/**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/harunurhan/idlejs.git"
+  },
+  "keywords": [
+    "library",
+    "typescript",
+    "javascript",
+    "idle",
+    "idlejs",
+    "module"
+  ],
+  "author": "Harun Urhan <harunurhan17@gmail.com> (http://github.com/harunurhan)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harunurhan/idlejs/issues"
+  },
+  "homepage": "https://github.com/harunurhan/idlejs#readme",
+  "devDependencies": {
+    "@types/jasmine": "^2.5.54",
+    "jasmine-core": "^2.8.0",
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-typescript": "^3.0.5",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2"
+  }
+}
