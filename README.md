@@ -2,7 +2,7 @@
 
 Execute a function only when certain events on certain target element have not occured within given timeout.
 
-It's simple, configurable and has easy chainable API.
+It's simple, configurable, typescript friendly and has easy chainable API.
 
 ### Install
 
@@ -11,6 +11,8 @@ It's simple, configurable and has easy chainable API.
 ### USAGE
 
 ```typescript
+import { Idle } from 'idlejs/dist';
+
 // with predefined events on `document`
 const idle = new Idle()
   .whenNotInteractive()
@@ -34,6 +36,8 @@ const idle = new Idle()
   .do(() => called = true)
   .start();
 ```
+
+For more features or examples please check the [tests](./src/index.spec.ts) and [source]('./src/index.ts) code.
 
 
 #### Setting time
