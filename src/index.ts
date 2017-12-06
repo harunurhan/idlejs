@@ -123,13 +123,8 @@ export class Idle {
 
   protected tick = () => {
     this.timer += 1;
-    if (this.timer === this.timeout) {
+    if (this.timer === this.timeout || (this.repetitive && this.timer % this.timeout === 0)) {
       this.onIdle();
-      if (!this.repetitive) {
-        this.stop();
-      } else {
-        this.reset();
-      }
     }
   }
 

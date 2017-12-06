@@ -39,6 +39,25 @@ describe('Idle', () => {
     }, 2.1 * testFactor);
   });
 
+  it('should keep calling do method after interactive', (done) => {
+    let callCount = 0;
+
+    idle = new Idle()
+      .whenNotInteractive()
+      .for(1, testFactor)
+      .do(() => callCount++)
+      .start();
+
+    setTimeout(() => {
+      document.dispatchEvent(new Event('click'));
+    }, 1.2 * testFactor);
+
+    setTimeout(() => {
+      expect(callCount).toBe(2);
+      done();
+    }, 2.5 * testFactor);
+  });
+
   it('should not call do method when not interactive for short time', (done) => {
     let called = false;
 
@@ -166,7 +185,7 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should repeat calling do method foreach timeout amount, repeatitive', (done) => {
+  it('should repeat calling do method foreach timeout amount, if repeatitive', (done) => {
     let callCount = 0;
 
     idle = new Idle()
@@ -178,6 +197,21 @@ describe('Idle', () => {
 
     setTimeout(() => {
       expect(callCount).toBe(2);
+      done();
+    }, 2.1 * testFactor);
+  });
+
+  it('should not repeat calling do method foreach timeout amount, if not repeatitive', (done) => {
+    let callCount = 0;
+
+    idle = new Idle()
+      .whenNotInteractive()
+      .for(1, testFactor)
+      .do(() => callCount++)
+      .start();
+
+    setTimeout(() => {
+      expect(callCount).toBe(1);
       done();
     }, 2.1 * testFactor);
   });
