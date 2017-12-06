@@ -38,14 +38,14 @@ const idle = new Idle()
 
 #### Setting time
 
-Second parameter of `for` time unit in miliseconds, by default 60000 (a minute)
+Second parameter of `for` is time unit in miliseconds, by default 60000 (a minute)
 
 ```typescript
 // will trigger if nothing happens for 5 minutes
 new Idle()
   .for(5)
 
-// will trigger if nothing happens for 5 minutes
+// will trigger if nothing happens for 5 seconds
 new Idle()
   .for(5, 1000)
 ```
