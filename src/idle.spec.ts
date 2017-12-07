@@ -1,4 +1,4 @@
-import { Idle } from './index';
+import { Idle } from './idle';
 
 const testFactor = 1000;
 
@@ -14,7 +14,7 @@ describe('Idle', () => {
 
     idle = new Idle()
       .whenNotInteractive()
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => called = true)
       .start();
 
@@ -29,7 +29,7 @@ describe('Idle', () => {
 
     idle = new Idle()
       .whenNotInteractive()
-      .for(2, testFactor)
+      .within(2, testFactor)
       .do(() => called = true)
       .start();
 
@@ -44,7 +44,7 @@ describe('Idle', () => {
 
     idle = new Idle()
       .whenNotInteractive()
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => callCount++)
       .start();
 
@@ -63,7 +63,7 @@ describe('Idle', () => {
 
     idle = new Idle()
       .whenNotInteractive()
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => called = true)
       .start();
 
@@ -78,7 +78,7 @@ describe('Idle', () => {
 
     idle = new Idle()
       .whenNotInteractive()
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => called = true)
       .start();
 
@@ -102,7 +102,7 @@ describe('Idle', () => {
         events: ['click'],
         target: button,
       })
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => called = true)
       .start();
 
@@ -133,7 +133,7 @@ describe('Idle', () => {
       },
       ])
       .whenNotInteractive()
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => called = true)
       .start();
 
@@ -152,7 +152,7 @@ describe('Idle', () => {
 
     idle = new Idle()
       .whenNotInteractive()
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => called = true)
       .start();
 
@@ -166,17 +166,17 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should not call do method when reseted', (done) => {
+  it('should not call do method when restarted', (done) => {
     let called = false;
 
     idle = new Idle()
       .whenNotInteractive()
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => called = true)
       .start();
 
     setTimeout(() => {
-      idle.reset();
+      idle.restart();
     }, 0.5 * testFactor);
 
     setTimeout(() => {
@@ -190,7 +190,7 @@ describe('Idle', () => {
 
     idle = new Idle()
       .whenNotInteractive()
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => callCount++)
       .repeat()
       .start();
@@ -206,7 +206,7 @@ describe('Idle', () => {
 
     idle = new Idle()
       .whenNotInteractive()
-      .for(1, testFactor)
+      .within(1, testFactor)
       .do(() => callCount++)
       .start();
 
