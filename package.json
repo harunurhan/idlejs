@@ -2,13 +2,16 @@
   "name": "idlejs",
   "version": "2.0.0",
   "description": "Execute when page is idle based on custom interactions",
-  "main": "dist/library.ts",
+  "main": "dist/index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "tsc -w",
+    "build:watch": "tsc -w",
+    "start": "karma start karma.config.js",
     "test": "karma start karma.config.js --single-run",
-    "test:watch": "karma start karma.config.js",
-    "lint": "tslint \"src/**/*.ts\""
+    "lint": "tslint \"src/**/*.ts\"",
+    "preversion": "npm test",
+    "version": "npm run build",
+    "postversion": "git push origin && git push origin --tags"
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,7 @@
     "javascript",
     "idle",
     "idlejs",
+    "not-idlejs",
     "module"
   ],
   "author": "Harun Urhan <harunurhan17@gmail.com> (http://github.com/harunurhan)",
