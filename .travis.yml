@@ -1,0 +1,23 @@
+language: node_js
+dist: trusty
+sudo: required
+node_js:
+- 9.5.0
+before_install:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
+addons:
+  chrome: stable
+before_deploy:
+- npm run build
+deploy:
+  provider: npm
+  email: harunurhan17@gmail.com
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: harunurhan/idlejs
+    branch: master
+  api_key:
+    secure: tJGPfmUNamz1IGKz0NR89Z7O1nI4sIncBF6/7ZqxR4L9w1hriSV2LokpaZi5vP5qiQLI0T+eA7XkmsTRBKJKpHLQNYqPOdrXlhvGVlTr4SjU4poLB8Sfl+CNqkYYlykKhNJDl8ZVMxDQy3E5+UAUVNf2EcCmnkQJy39zDjokYerLWleRkiiAlTlTxN3fZnAmYD0dtJyw1+fnRdeYqxoyYdzfhnE2NncB0YiwFw4gs0mZacm/70hFghQFni1zzkr+mGuIuHjsjwqnx6636iHuRAj79EqJWzxYrSlLpW9+RsIDT6cnwkJW6v1jmlEkjIXGiwbxDcDfaBmWIgqCy4SOHACATWTd/Lowp+P0ScxDWAJa3lsY0EyxMhEX6FPFJiZHiGDU73cs5yCwkb8UbcIdI0IzPL7OBV1w9S2uTDIPXw/EhvevVlQoAu6SYRmtFChu7GR2UySI6vdMw7lQoiJmpWJO9GMzqh2DNl7VLZ58mWXnRddn5waFTi4+ZAxxB2qrN0wcB4LW29bCjUa4IELdXw7lC//kCmuh/9eXNH/BMMYHqWvnun9me3B3PQS6VZT+fWws81hh31i5s+r1F8N1iqBPqmvp1HCFyYDtrNqTGqbC2l00Iok0oc7QyI3Gf14YnO5tshu0JNk/+MasTFBFB7JWkTLJVx6eUqT/MGvcK0c=

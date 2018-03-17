@@ -13,7 +13,6 @@ module.exports = function (config) {
       },
       tsconfig: "./tsconfig.json",
     },
-    reporters: ["progress", "karma-typescript"],
     browsers: ["Chrome"]
   });
 };
