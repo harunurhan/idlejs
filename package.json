@@ -1,6 +1,6 @@
 {
   "name": "idlejs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Execute when page is idle based on custom interactions",
   "main": "dist/index.ts",
   "scripts": {
