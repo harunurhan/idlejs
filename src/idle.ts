@@ -2,7 +2,7 @@ import { Base, Interaction } from './base';
 
 export class Idle extends Base {
 
-  protected repetitive = false;
+  private repetitive = false;
 
   /**
    * @param interactions set of interactions which will prevent being idle
@@ -16,7 +16,7 @@ export class Idle extends Base {
    * Adds default interactions to decide if user is not interacting with page.
    */
   public whenNotInteractive(): this {
-    this.pushDefaultInteraction();
+    this.pushDefaultInteractions();
     return this;
   }
 
@@ -35,21 +35,20 @@ export class Idle extends Base {
    * incase of custom situations other than events on `EventTarget`
    */
   public restart(): this {
-    this.listenerAction();
+    this.onInteraction();
     return this;
   }
 
-  protected listenerAction = () => {
-    this.timer = 0;
+  protected onInteraction = () => {
     this.clearInterval();
     this.setInterval();
   }
 
-  protected tick = () => {
-    this.timer += 1;
-    if (this.timer === this.timeout || (this.repetitive && this.timer % this.timeout === 0)) {
-      this.callback();
+  protected onInterval = () => {
+    this.callback();
+
+    if (!this.repetitive)  {
+      this.clearInterval();
     }
   }
-
 }

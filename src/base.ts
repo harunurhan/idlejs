@@ -3,7 +3,7 @@ export interface Interaction {
   events: string[];
 }
 
-const defaultDocumentEvents = [
+const DEFAULT_DOCUMENT_EVENTS = [
   'click',
   'mousemove',
   'mouseenter',
@@ -14,16 +14,15 @@ const defaultDocumentEvents = [
 
 export abstract class Base {
 
-  protected abstract listenerAction: () => void;
-  protected abstract tick: () => void;
-
-  protected timer = 0;
-  protected intervalId: number;
-
-  protected interactions: Interaction[] = [];
-  protected timeout: number;
-  protected factor: number;
+  protected abstract onInteraction: () => void;
+  protected abstract onInterval: () => void;
   protected callback: () => void;
+
+  private interactions: Interaction[] = [];
+  private timeout: number;
+  private factor: number;
+
+  private activeIntervalId: number;
 
   /**
    * Sets time after which it's idle if no interaction occurs.
@@ -43,7 +42,7 @@ export abstract class Base {
 
   public start(): this {
     if (this.interactions.length === 0) {
-      throw Error('There is no interaction to watch!');
+      throw new Error('There is no interaction to watch!');
     }
 
     this.addListeners();
@@ -60,7 +59,7 @@ export abstract class Base {
   protected addListeners(): void {
     for (const interaction of this.interactions) {
       for (const event of interaction.events) {
-        interaction.target.addEventListener(event, this.listenerAction);
+        interaction.target.addEventListener(event, this.onInteraction);
       }
     }
   }
@@ -68,22 +67,14 @@ export abstract class Base {
   protected removeListeners(): void {
     for (const interaction of this.interactions) {
       for (const event of interaction.events) {
-        interaction.target.removeEventListener(event, this.listenerAction);
+        interaction.target.removeEventListener(event, this.onInteraction);
       }
     }
   }
 
-  protected clearInterval(): void {
-    clearInterval(this.intervalId);
-  }
-
-  protected setInterval(): void {
-    this.intervalId = setInterval(this.tick, this.factor);
-  }
-
-  protected pushDefaultInteraction(): void {
+  protected pushDefaultInteractions(): void {
     this.interactions.push({
-      events: defaultDocumentEvents,
+      events: DEFAULT_DOCUMENT_EVENTS,
       target: document,
     });
   }
@@ -93,4 +84,11 @@ export abstract class Base {
       .concat(interactions);
   }
 
+  protected clearInterval(): void {
+    clearInterval(this.activeIntervalId);
+  }
+
+  protected setInterval(): void {
+    this.activeIntervalId = setInterval(this.onInterval, this.timeout * this.factor);
+  }
 }
