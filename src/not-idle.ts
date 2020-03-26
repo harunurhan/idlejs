@@ -2,8 +2,8 @@ import { Base, Interaction } from './base';
 
 export class NotIdle extends Base {
 
-  protected wasInteractiveLastPeriod: boolean;
   protected immediate = false;
+  private interactedWithin = false;
 
   /**
    * @param interactions set of interactions which will prevent being idle
@@ -17,7 +17,7 @@ export class NotIdle extends Base {
    * Adds default interactions to decide if user is not interacting with page.
    */
   public whenInteractive(): this {
-    this.pushDefaultInteraction();
+    this.pushDefaultInteractions();
     return this;
   }
 
@@ -32,24 +32,18 @@ export class NotIdle extends Base {
     return this;
   }
 
-  protected listenerAction = () => {
-    this.wasInteractiveLastPeriod = true;
+  protected onInteraction = () => {
+    if (!this.interactedWithin && this.immediate) {
+      this.callback();
+    }
+    this.interactedWithin = true;
   }
 
-  protected tick = () => {
-    this.timer += 1;
-
-    if (this.immediate && this.wasInteractiveLastPeriod) {
+  protected onInterval = () => {
+    if (this.interactedWithin && !this.immediate) {
       this.callback();
-      this.wasInteractiveLastPeriod = false;
     }
 
-    if (this.timer === this.timeout) {
-      this.timer = 0;
-      if (!this.immediate && this.wasInteractiveLastPeriod) {
-        this.callback();
-        this.wasInteractiveLastPeriod = false;
-      }
-    }
+    this.interactedWithin = false;
   }
 }

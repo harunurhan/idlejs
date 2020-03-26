@@ -92,7 +92,7 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should not call do method when intertive: custom', (done) => {
+  it('should not call do method when interactive: custom', (done) => {
     let called = false;
 
     const button = document.createElement('button') as HTMLButtonElement;
@@ -116,7 +116,7 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should not call do method when intertive: multiple custom + default', (done) => {
+  it('should not call do method when interactive: multiple custom + default', (done) => {
     let called = false;
 
     const button = document.createElement('button') as HTMLButtonElement;
