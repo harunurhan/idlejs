@@ -15,6 +15,7 @@ deploy:
   provider: npm
   email: harunurhan17@gmail.com
   skip_cleanup: true
+  edge: true
   on:
     tags: true
     repo: harunurhan/idlejs
