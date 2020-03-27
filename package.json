@@ -1,6 +1,6 @@
 {
   "name": "idlejs",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Execute stuff when user is idle or interactive",
   "main": "dist/index.ts",
   "scripts": {
