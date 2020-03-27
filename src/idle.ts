@@ -21,7 +21,7 @@ export class Idle extends Base {
   }
 
   /**
-   * Repeat calling idle action for each timeout frame.
+   * Repeat calling the callback for each timeout frame.
    *
    * - Does NOT repeat by default
    */
@@ -32,7 +32,7 @@ export class Idle extends Base {
 
   /**
    * Restart away timer
-   * incase of custom situations other than events on `EventTarget`
+   * Can be used incase of something different than events on `EventTarget`s
    */
   public restart(): this {
     this.onInteraction();

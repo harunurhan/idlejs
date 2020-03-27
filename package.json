@@ -1,7 +1,7 @@
 {
   "name": "idlejs",
   "version": "2.0.1",
-  "description": "Execute when page is idle based on custom interactions",
+  "description": "Execute stuff when user is idle or interactive",
   "main": "dist/index.ts",
   "scripts": {
     "build": "tsc",

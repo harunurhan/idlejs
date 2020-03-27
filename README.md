@@ -2,16 +2,18 @@
 
 Execute a function only when certain events on certain target element have or have not occured within given timeout.
 
-It's simple, configurable, typescript friendly and has easy chainable API.
+It's simple, configurable, typescript friendly and has an easy chainable API.
 
 ### Install
 
-`npm install --save idlejs`
+```
+npm install --save idlejs
+yarn add idlejs
+```
 
 ### Idle
 
-This one executes callback function when one of the certain events has not occured within given time. Simply detects if user is idle
-by calculating the time from the last interactivity.
+Excutes the callback function (`do`) when **none** of the specified events have occurred within given time, in other words when user is idle. 
 
 #### Usage
 
@@ -21,19 +23,19 @@ import { Idle } from 'idlejs/dist';
 // with predefined events on `document`
 const idle = new Idle()
   .whenNotInteractive()
-  .within(60)
+  .within(5)
   .do(() => console.log('IDLE'))
   .start();
 
-// more complete example with custom interactions
+// another example with custom events which are useful if events aren't bubbling up to the document
 const idle = new Idle()
   .whenNot([{
     events: ['click', 'hover'],
-    target: button,
+    target: buttonEl,
   },
   {
     events: ['click', 'input'],
-    target: input,
+    target: inputEl,
   },
   ])
   .whenNotInteractive()
@@ -46,21 +48,21 @@ For more features or examples please check the [tests](./src/idle.spec.ts) and [
 
 ### NotIdle
 
-This one executes callback function when one of the certain events have occured within given time at least once. Simply 
-when user was interactive at least once within given time.
+Executes the callback function (`do`), if at least **one** of the specified events have occured within given time, in other words when user is not idle or interactive.
 
 #### Usage
 
 ```typescript
 import { NotIdle } from 'idlejs/dist';
 
+// with predefined events on `document`
 const idle = new Idle()
   .whenInteractive()
   .within(10)
   .do(() => console.log('NOT IDLE'))
   .start();
 
-// more complete example with custom interactions
+// another example with custom events which are useful if events aren't bubbling up to the `document`
 const notIdle = new NotIdle()
   .when([{
     events: ['click', 'hover'],
@@ -81,8 +83,7 @@ For more features or examples please check the [tests](./src/not-idle.spec.ts) a
 
 ### Setting time
 
-Second parameter of `within` is time unit in miliseconds, by default 60000 (a minute), so internal timer ticks per given time
-and do the checks.
+Second parameter of `within` is time unit in miliseconds, by default 60000 (a minute).
 
 ```typescript
 // will trigger if nothing happens for 5 minutes
