@@ -13,7 +13,6 @@ const DEFAULT_DOCUMENT_EVENTS = [
 ];
 
 export abstract class Base {
-
   protected abstract onInteraction: () => void;
   protected abstract onInterval: () => void;
   protected callback: () => void;
@@ -80,15 +79,14 @@ export abstract class Base {
   }
 
   protected concatInteractions(interactions: Interaction[] | Interaction): void {
-    this.interactions = this.interactions
-      .concat(interactions);
+    this.interactions = this.interactions.concat(interactions);
   }
 
   protected clearInterval(): void {
-    clearInterval(this.activeIntervalId);
+    window.clearInterval(this.activeIntervalId);
   }
 
   protected setInterval(): void {
-    this.activeIntervalId = setInterval(this.onInterval, this.timeout * this.factor);
+    this.activeIntervalId = window.setInterval(this.onInterval, this.timeout * this.factor);
   }
 }

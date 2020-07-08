@@ -1,7 +1,6 @@
 import { Base, Interaction } from './base';
 
 export class Idle extends Base {
-
   private repetitive = false;
 
   /**
@@ -42,13 +41,13 @@ export class Idle extends Base {
   protected onInteraction = () => {
     this.clearInterval();
     this.setInterval();
-  }
+  };
 
   protected onInterval = () => {
     this.callback();
 
-    if (!this.repetitive)  {
+    if (!this.repetitive) {
       this.clearInterval();
     }
-  }
+  };
 }
