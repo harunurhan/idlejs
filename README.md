@@ -6,9 +6,10 @@ It's simple, configurable, typescript friendly and has an easy chainable API.
 
 ### Install
 
-```
-npm install --save idlejs
+```bash
 yarn add idlejs
+
+npm install --save idlejs
 ```
 
 ### Idle
@@ -18,13 +19,13 @@ Excutes the callback function (`do`) when **none** of the specified events have 
 #### Usage
 
 ```typescript
-import { Idle } from 'idlejs/dist';
+import { Idle } from 'idlejs';
 
 // with predefined events on `document`
 const idle = new Idle()
   .whenNotInteractive()
   .within(5)
-  .do(() => console.log('IDLE'))
+  .do(() => logoutUser())
   .start();
 
 // another example with custom events which are useful if events aren't bubbling up to the document
@@ -40,7 +41,7 @@ const idle = new Idle()
   ])
   .whenNotInteractive()
   .within(10)
-  .do(() => called = true)
+  .do(logoutUser)
   .start();
 ```
 
@@ -53,13 +54,13 @@ Executes the callback function (`do`), if at least **one** of the specified even
 #### Usage
 
 ```typescript
-import { NotIdle } from 'idlejs/dist';
+import { NotIdle } from 'idlejs';
 
 // with predefined events on `document`
 const idle = new Idle()
   .whenInteractive()
   .within(10)
-  .do(() => console.log('NOT IDLE'))
+  .do(() => log('user was active in the last 10 minutes'))
   .start();
 
 // another example with custom events which are useful if events aren't bubbling up to the `document`
@@ -75,7 +76,7 @@ const notIdle = new NotIdle()
   ])
   .whenInteractive()
   .within(10)
-  .do(() => console.log('NOT IDLE'))
+  .do(() => log('user was active in the last 10 minutes'))
   .start();
 ```
 

@@ -9,13 +9,13 @@ describe('Idle', () => {
     notIdle.stop();
   });
 
-  it('should call do method when interactive', (done) => {
+  it('should call do method when interactive', done => {
     let called = false;
 
     notIdle = new NotIdle()
       .whenInteractive()
       .within(1, testFactor)
-      .do(() => called = true)
+      .do(() => (called = true))
       .start();
 
     setTimeout(() => {
@@ -28,13 +28,13 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should call do method when interactive, with more timeout', (done) => {
+  it('should call do method when interactive, with more timeout', done => {
     let called = false;
 
     notIdle = new NotIdle()
       .whenInteractive()
       .within(2, testFactor)
-      .do(() => called = true)
+      .do(() => (called = true))
       .start();
 
     setTimeout(() => {
@@ -47,7 +47,7 @@ describe('Idle', () => {
     }, 2.1 * testFactor);
   });
 
-  it('should keep calling do method after non interactive', (done) => {
+  it('should keep calling do method after non interactive', done => {
     let callCount = 0;
 
     notIdle = new NotIdle()
@@ -70,13 +70,13 @@ describe('Idle', () => {
     }, 3.2 * testFactor);
   });
 
-  it('should not call do method when not interactive ', (done) => {
+  it('should not call do method when not interactive ', done => {
     let called = false;
 
     notIdle = new NotIdle()
       .whenInteractive()
       .within(1, testFactor)
-      .do(() => called = true)
+      .do(() => (called = true))
       .start();
 
     setTimeout(() => {
@@ -85,13 +85,13 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should not call do method when interactive immediately if not immediate', (done) => {
+  it('should not call do method when interactive immediately if not immediate', done => {
     let called = false;
 
     notIdle = new NotIdle()
       .whenInteractive()
       .within(2, testFactor)
-      .do(() => called = true)
+      .do(() => (called = true))
       .start();
 
     setTimeout(() => {
@@ -104,14 +104,14 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should call do method when interactive immediately if immediate', (done) => {
+  it('should call do method when interactive immediately if immediate', done => {
     let called = false;
 
     notIdle = new NotIdle()
       .whenInteractive()
       .within(2, testFactor)
       .immediately()
-      .do(() => called = true)
+      .do(() => (called = true))
       .start();
 
     setTimeout(() => {
@@ -124,7 +124,7 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should call do method when interactive only once if immediate', (done) => {
+  it('should call do method when interactive only once if immediate', done => {
     let callCount = 0;
 
     notIdle = new NotIdle()
@@ -144,7 +144,7 @@ describe('Idle', () => {
     }, 1.2 * testFactor);
   });
 
-  it('should call do method when interactive: custom', (done) => {
+  it('should call do method when interactive: custom', done => {
     let called = false;
 
     const button = document.createElement('button') as HTMLButtonElement;
@@ -155,7 +155,7 @@ describe('Idle', () => {
         target: button,
       })
       .within(1, testFactor)
-      .do(() => called = true)
+      .do(() => (called = true))
       .start();
 
     setTimeout(() => {
@@ -168,25 +168,26 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should call do method when interactive: multiple custom + default', (done) => {
+  it('should call do method when interactive: multiple custom + default', done => {
     let called = false;
 
     const button = document.createElement('button') as HTMLButtonElement;
     const input = document.createElement('input') as HTMLInputElement;
 
     notIdle = new NotIdle()
-      .when([{
-        events: ['click', 'hover'],
-        target: button,
-      },
-      {
-        events: ['click', 'input'],
-        target: input,
-      },
+      .when([
+        {
+          events: ['click', 'hover'],
+          target: button,
+        },
+        {
+          events: ['click', 'input'],
+          target: input,
+        },
       ])
       .whenInteractive()
       .within(1, testFactor)
-      .do(() => called = true)
+      .do(() => (called = true))
       .start();
 
     setTimeout(() => {
@@ -199,13 +200,13 @@ describe('Idle', () => {
     }, 1.1 * testFactor);
   });
 
-  it('should not call do method when stopped', (done) => {
+  it('should not call do method when stopped', done => {
     let called = false;
 
     notIdle = new NotIdle()
       .whenInteractive()
       .within(1, testFactor)
-      .do(() => called = true)
+      .do(() => (called = true))
       .start();
 
     setTimeout(() => {

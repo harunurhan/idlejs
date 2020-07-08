@@ -1,7 +1,6 @@
 import { Base, Interaction } from './base';
 
 export class NotIdle extends Base {
-
   protected immediate = false;
   private interactedWithin = false;
 
@@ -37,7 +36,7 @@ export class NotIdle extends Base {
       this.callback();
     }
     this.interactedWithin = true;
-  }
+  };
 
   protected onInterval = () => {
     if (this.interactedWithin && !this.immediate) {
@@ -45,5 +44,5 @@ export class NotIdle extends Base {
     }
 
     this.interactedWithin = false;
-  }
+  };
 }
