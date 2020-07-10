@@ -12,6 +12,14 @@ yarn add idlejs
 npm install --save idlejs
 ```
 
+### v2 to v3
+
+#### Change imports from `idlejs/dist` to `idlejs`
+
+```js
+import { ... } from 'idjejs' 
+```
+
 ### Idle
 
 Excutes the callback function (`do`) when **none** of the specified events have occurred within given time, in other words when user is idle. 
