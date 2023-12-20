@@ -53,7 +53,7 @@ const idle = new Idle()
   .start();
 ```
 
-For more features or examples please check the [tests](./src/idle.spec.ts) and [source]('./src/idle.ts) code.
+For more features or examples please check the [tests](./src/idle.spec.ts) and [source](./src/idle.ts) code.
 
 ### NotIdle
 
@@ -88,7 +88,7 @@ const notIdle = new NotIdle()
   .start();
 ```
 
-For more features or examples please check the [tests](./src/not-idle.spec.ts) and [source]('./src/not-idle.ts) code.
+For more features or examples please check the [tests](./src/not-idle.spec.ts) and [source](./src/not-idle.ts) code.
 
 ### Setting time
 
